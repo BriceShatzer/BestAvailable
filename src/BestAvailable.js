@@ -6,3 +6,68 @@ Built using angularJS & Bootstrap with data being provided by fantasyfootballner
 
 See http://www.fantasyfootballnerd.com/fantasy-football-api for more info.
 */
+var bestAvailableApp = angular.module('bestAvailableApp', []);
+
+/*
+bestAvailableApp.controller('playerListController', function($scope){
+	$scope.testPlayers = [
+		{
+		  playerId: '259',
+		  position: 'RB',
+		  displayName: 'Adrian Peterson',
+		  fname: 'Adrian',
+		  lname: 'Peterson',
+		  team: 'MIN',
+		  byeWeek: '5',
+		  nerdRank: '1.826',
+		  positionRank: '1',
+		  overallRank: '1'
+		},{
+		  playerId: '1981',
+		  position: 'RB',
+		  displayName: 'Doug Martin',
+		  fname: 'Doug',
+		  lname: 'Martin',
+		  team: 'TB',
+		  byeWeek: '5',
+		  nerdRank: '2.635',
+		  positionRank: '2',
+		  overallRank: '2'
+		},{  
+		  playerId: '145',
+		  position: 'RB',
+		  displayName: 'Jamaal Charles',
+		  fname: 'Jamaal',
+		  lname: 'Charles',
+		  team: 'KC',
+		  byeWeek: '10',
+		  nerdRank: '5.594',
+		  positionRank: '3',
+		  overallRank: '3'
+		},{
+		  playerId: '454',
+		  position: 'WR',
+		  displayName: 'Calvin Johnson',
+		  fname: 'Calvin',
+		  lname: 'Johnson',
+		  team: 'DET',
+		  byeWeek: '9',
+		  nerdRank: '7.209',
+		  positionRank: '1',
+		  overallRank: '4'
+		},{
+		  playerId: '1143',
+		  position: 'WR',
+		  displayName: 'Dez Bryant',
+		  fname: 'Dez',
+		  lname: 'Bryant',
+		  team: 'DAL',
+		  byeWeek: '11',
+		  nerdRank: '14.809',
+		  positionRank: '2',
+		  overallRank: '5'
+		}
+	]
+});
+
+*/
