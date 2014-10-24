@@ -25,15 +25,17 @@ module.exports = function(grunt) {
       }
     },
 
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
-      }
-    },
+    // uglify: {
+    //   options: {
+    //     beautify: true,
+    //     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+    //     sourceMap: true
+    //   },
+    //   build: {
+    //     src: 'src/<%= pkg.name %>.js',
+    //     dest: 'build/<%= pkg.name %>.min.js'
+    //   }
+    // },
 
     copy: {
       markup:{
@@ -41,10 +43,22 @@ module.exports = function(grunt) {
       },
       scripts:{
         files: [
+          {src: 'bower_components/angular/angular.js', dest: 'build/angular.js'},
           {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
+          {src: 'bower_components/angular/angular.min.js.map', dest: 'build/angular.min.js.map'},
           {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
-          {src: 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js', dest: 'build/bootstrap.js'}
+          {src: 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js', dest: 'build/bootstrap.js'},
+          {src: 'src/BestAvailable.js', dest: 'build/BestAvailable.js'}
         ]
+      }
+    },
+
+    connect: {
+      build: {
+        options: {
+          hostname: '*',
+          base: 'build'
+        }
       }
     },
 
@@ -52,11 +66,14 @@ module.exports = function(grunt) {
       sass: {
         files: 'src/*.scss',
         tasks: 'compass',
-        options: {},
       },
       markup: {
         files: 'src/*.html',
         tasks: 'copy:markup'
+      },
+      scripts: {
+        files: 'src/*.js',
+        tasks: 'copy:scripts'
       }
     }
   
@@ -67,8 +84,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   // Default task(s).
-  grunt.registerTask('default', ['bower','uglify','compass','copy','watch']);
+  grunt.registerTask('default', ['bower',/*'uglify',*/'compass','copy','connect','watch']);
 };
