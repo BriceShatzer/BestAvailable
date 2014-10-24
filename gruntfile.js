@@ -3,6 +3,26 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    bower:{
+      build: {
+        options: {}
+      }      
+    },
+
+    compass: {
+      build: {
+        options: {
+          //outputStyle: 'compressed',
+          noLineComments: true,
+          force: true,
+          sassDir: 'src',
+          importPath : 'src/bower_components/bootstrap-sass-official/assets/stylesheets',
+          cssDir: 'build/css'
+        }
+      }
+    },
+
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -14,10 +34,12 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
+  // Load task plugins.
+  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-
+  
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['bower','uglify','compass']);
 
 };
