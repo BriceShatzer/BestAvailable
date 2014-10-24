@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
+// Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -36,14 +36,30 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      build: {
+      markup:{
+        files: [ {expand: true, src: 'src/*.html', dest: 'build/', flatten: true} ]
+      },
+      scripts:{
         files: [
-          {expand: true, src: 'src/*.html', dest: 'build/', flatten: true},
           {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
-          {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'}
+          {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
+          {src: 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js', dest: 'build/bootstrap.js'}
         ]
       }
+    },
+
+    watch: {
+      sass: {
+        files: 'src/*.scss',
+        tasks: 'compass',
+        options: {},
+      },
+      markup: {
+        files: 'src/*.html',
+        tasks: 'copy:markup'
+      }
     }
+  
   });
 
   // Load task plugins.
@@ -51,7 +67,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   
   // Default task(s).
-  grunt.registerTask('default', ['bower','uglify','compass','copy']);
+  grunt.registerTask('default', ['bower','uglify','compass','copy','watch']);
 };
