@@ -6,7 +6,9 @@ module.exports = function(grunt) {
 
     bower:{
       build: {
-        options: {}
+        options: {
+          targetDir:'bower_components',
+        }
       }      
     },
 
@@ -17,7 +19,7 @@ module.exports = function(grunt) {
           noLineComments: true,
           force: true,
           sassDir: 'src',
-          importPath : 'src/bower_components/bootstrap-sass-official/assets/stylesheets',
+          importPath : 'bower_components/bootstrap-sass-official/assets/stylesheets',
           cssDir: 'build/css'
         }
       }
@@ -31,6 +33,16 @@ module.exports = function(grunt) {
         src: 'src/<%= pkg.name %>.js',
         dest: 'build/<%= pkg.name %>.min.js'
       }
+    },
+
+    copy: {
+      build: {
+        files: [
+          {expand: true, src: 'src/*.html', dest: 'build/', flatten: true},
+          {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
+          {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'}
+        ]
+      }
     }
   });
 
@@ -38,8 +50,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   
   // Default task(s).
-  grunt.registerTask('default', ['bower','uglify','compass']);
-
+  grunt.registerTask('default', ['bower','uglify','compass','copy']);
 };
