@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
     <script src="angular.min.js"></script>
+    <script src="lodash.min.js"></script>
     <script src="BestAvailable.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,11 +41,12 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Position Filter <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">QB</a></li>
-                <li><a href="#">RB</a></li>
-                <li><a href="#">WR</a></li>
-                <li><a href="#">TE</a></li>
-                <li><a href="#">FLEX</a></li>
+                <li><a href="" ng-click="setPositionFilterValue($event)">Show All</a></li>
+                <li><a href="" ng-click="setPositionFilterValue($event)">QB</a></li>
+                <li><a href="" ng-click="setPositionFilterValue($event)">RB</a></li>
+                <li><a href="" ng-click="setPositionFilterValue($event)">WR</a></li>
+                <li><a href="" ng-click="setPositionFilterValue($event)">TE</a></li>
+                <li><a href="" ng-click="setPositionFilterValue($event)">FLEX</a></li>
               </ul>
             </li>
           </ul>
@@ -58,38 +60,22 @@
     </nav> 
 
     <div id="playerList">
-      <!-- filter:{position:positionFilter} | -->
-      <div class='player' ng-repeat="player in testPlayers | filter:test(nameSearch)">
+      <!-- 
+      | filter:playerPositionFilter(positionFilterValue) | filter:playerNameFilter(nameSearch)
+      -->
+      <div class='player' ng-repeat="player in testPlayers | filter:playerPositionFilter(positionFilterValue) | filter:{displayName:nameSearch}" ng-click="selectPlayer($event)" data-playerId="{{player.playerId}}">
         <div>
-          <div class="name">{{player.fname}} {{player.lname}}</div>
+          <div class="name"><!-- {{player.fname}} {{player.lname}} -->{{player.displayName}}</div>
           <div class="position">{{player.position}}</div>
           <div class="team">{{player.team}}</div>
         </div>
       </div>      
-
-
-<!-- 
-      <div class='player'>
-        <div>
-          <div class="name">Reggie Bush</div>
-          <div class="position">RB</div>
-          <div class="team">DET</div>
-        </div>
-      </div>
-      <div class='player'>
-        <div>
-          <div class="name">Carson Palmer</div>
-          <div class="position">QB</div>
-          <div class="team">ARI</div>
-        </div>
-      </div>
--->
     </div>
 
     <div id="infoPane"> this is text</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap.js"></script>
   </body>

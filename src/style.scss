@@ -44,6 +44,7 @@
 	@extend .panel;
 	@extend .panel-default;
 	margin-bottom:5px;
+	cursor:pointer;
 
 	>div{
 		@extend .panel-body;
@@ -53,7 +54,9 @@
 		div.position,div.team{margin-left:25px;float:left}
 	}	
 }
-
+.player.selected{
+	background-color:#F5F5F5;
+}
 
 #infoPane{
 	@extend .col-xs-4;
