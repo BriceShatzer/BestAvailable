@@ -27,7 +27,6 @@ module.exports = function(grunt) {
 
     // uglify: {
     //   options: {
-    //     beautify: true,
     //     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
     //     sourceMap: true
     //   },
@@ -43,7 +42,6 @@ module.exports = function(grunt) {
       },
       scripts:{
         files: [
-          {src: 'bower_components/angular/angular.js', dest: 'build/angular.js'},
           {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
           {src: 'bower_components/angular/angular.min.js.map', dest: 'build/angular.min.js.map'},
           {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
@@ -74,6 +72,7 @@ module.exports = function(grunt) {
       scripts: {
         files: 'src/*.js',
         tasks: 'copy:scripts'
+        //tasks: 'uglify'
       }
     }
   
