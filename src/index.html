@@ -5,11 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Best Available</title>
-
-    <!-- Bootstrap -->
+    
     <link href="css/style.css" rel="stylesheet">
-    <script src="angular.min.js"></script>
-    <script src="lodash.min.js"></script>
+    <script>function checkAndLoadLocal(func,file){ if(typeof(func) === 'undefined'){ document.write('<script src="'+file+'"><\/script>'); } }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script>checkAndLoadLocal(window.angular,'angular.min.js');</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>checkAndLoadLocal(window.jQuery,'jquery.min.js');</script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script> checkAndLoadLocal(window._,'lodash.min.js');</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script> checkAndLoadLocal($.fn.modal,'bootstrap.min.js');</script>
+    
     <script src="BestAvailable.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,10 +80,5 @@
     </div>
 
     <div id="infoPane"> this is text</div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap.js"></script>
   </body>
 </html>
