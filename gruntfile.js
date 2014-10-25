@@ -45,6 +45,7 @@ module.exports = function(grunt) {
           {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
           {src: 'bower_components/angular/angular.min.js.map', dest: 'build/angular.min.js.map'},
           {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
+          {src: 'bower_components/lodash/dist/lodash.min.js', dest: 'build/lodash.min.js'},
           {src: 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js', dest: 'build/bootstrap.js'},
           {src: 'src/BestAvailable.js', dest: 'build/BestAvailable.js'}
         ]
