@@ -2,6 +2,40 @@
 @import "compass/css3";
 @import "bootstrap";
 
+
+//---start navBar styling
+#navBar{
+	@extend .navbar;
+	@extend .navbar-default;
+
+	>div{@extend .container-fluid;}
+	div.collapsed-nav{
+			@extend .navbar-header;
+	 		a{@extend .navbar-brand;}
+	};
+}
+
+#viewControls{
+	@extend .collapse;
+	@extend .navbar-collapse;
+
+	>ul{
+		@extend .nav;
+		@extend .navbar-nav;
+	}
+	form{
+		@extend .navbar-form; 
+		@extend .navbar-left;
+
+		>div{@extend .form-group}
+		input{@extend .form-control}
+	}
+}
+
+
+
+//---end navBar styling 
+
 #playerList{
 	@extend .col-xs-8;
 }
@@ -17,12 +51,11 @@
 		
 		div.name{font-weight:700;width:45%;float:left};
 		div.position,div.team{margin-left:25px;float:left}
-	};
-	
+	}	
 }
 
 
 #infoPane{
 	@extend .col-xs-4;
-	background-color:pink;
+	@extend .well;	
 }
