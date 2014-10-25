@@ -6,10 +6,34 @@ Built using angularJS & Bootstrap with data being provided by fantasyfootballner
 
 See http://www.fantasyfootballnerd.com/fantasy-football-api for more info.
 */
-var bestAvailableApp = angular.module('bestAvailableApp', []);
 
 /*
+function playerNameFilter(value){
+	if( value.fname.indexOf(nameSearch) !==-1 ||  value.lname.indexOf(nameSearch) !==-1 ){
+		return true
+	} else { return false}
+}
+*/
+
+var bestAvailableApp = angular.module('bestAvailableApp', []);
+
 bestAvailableApp.controller('playerListController', function($scope){
+	$scope.positionFilter = '';
+
+	$scope.test = function(query) {
+		return function(player) { return player.fname.match(query); }
+		//works but is currently case sensitive
+	};
+
+	$scope.playerNameFilter = function(query){
+		caseInsensitiveQuery = '/'+query+'/i'
+		return function(player){
+			if(player.fname.indexOf(query) !==-1 || player.lname.indexOf(query) !==-1 ){
+				return player
+			}
+		}
+	//	return function(player) { return player.name.match(value); }
+	};
 	$scope.testPlayers = [
 		{
 		  playerId: '259',
@@ -70,4 +94,3 @@ bestAvailableApp.controller('playerListController', function($scope){
 	]
 });
 
-*/
