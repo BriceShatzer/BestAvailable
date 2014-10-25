@@ -25,6 +25,34 @@ module.exports = function(grunt) {
       }
     },
 
+    connect: {
+      build: {
+        options: {
+          hostname: '*',
+          base: 'build'
+        }
+      }
+    },
+
+    copy: {
+      markup:{
+        files: [ {expand: true, src: 'src/*.html', dest: 'build/', flatten: true} ]
+      },
+      assetScripts:{
+        files: [
+          {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
+          {src: 'bower_components/angular/angular.min.js.map', dest: 'build/angular.min.js.map'},
+          {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
+          {src: 'bower_components/lodash/dist/lodash.min.js', dest: 'build/lodash.min.js'},
+        ]
+      },
+      applicationLogic:{
+        files: [
+          {src: 'src/BestAvailable.js', dest: 'build/BestAvailable.js'}
+        ]
+      }
+    },    
+
     // uglify: {
     //   options: {
     //     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
@@ -36,28 +64,14 @@ module.exports = function(grunt) {
     //   }
     // },
 
-    copy: {
-      markup:{
-        files: [ {expand: true, src: 'src/*.html', dest: 'build/', flatten: true} ]
+    uglify: {
+      options: {
+        //banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+        sourceMap: true
       },
-      scripts:{
-        files: [
-          {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},
-          {src: 'bower_components/angular/angular.min.js.map', dest: 'build/angular.min.js.map'},
-          {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
-          {src: 'bower_components/lodash/dist/lodash.min.js', dest: 'build/lodash.min.js'},
-          {src: 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js', dest: 'build/bootstrap.js'},
-          {src: 'src/BestAvailable.js', dest: 'build/BestAvailable.js'}
-        ]
-      }
-    },
-
-    connect: {
       build: {
-        options: {
-          hostname: '*',
-          base: 'build'
-        }
+        src: 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+        dest: 'build/bootstrap.min.js'
       }
     },
 
@@ -70,10 +84,9 @@ module.exports = function(grunt) {
         files: 'src/*.html',
         tasks: 'copy:markup'
       },
-      scripts: {
+      applicationLogic: {
         files: 'src/*.js',
-        tasks: 'copy:scripts'
-        //tasks: 'uglify'
+        tasks: 'copy:applicationLogic'        
       }
     }
   
@@ -82,11 +95,11 @@ module.exports = function(grunt) {
   // Load task plugins.
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   // Default task(s).
-  grunt.registerTask('default', ['bower',/*'uglify',*/'compass','copy','connect','watch']);
+  grunt.registerTask('default', ['bower','copy','uglify','compass','connect','watch']);
 };
