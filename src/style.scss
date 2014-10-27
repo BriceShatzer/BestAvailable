@@ -16,6 +16,7 @@
 }
 
 #viewControls{
+	overflow:hidden;
 	@extend .collapse;
 	@extend .navbar-collapse;
 
@@ -31,13 +32,10 @@
 		input{@extend .form-control}
 	}
 }
-
-
-
 //---end navBar styling 
 
 #playerList{
-	@extend .col-xs-8;
+	@extend .col-xs-7;
 }
 
 .player{
@@ -57,8 +55,97 @@
 .player.selected{
 	background-color:#F5F5F5;
 }
-
+#sideBar{@extend .col-xs-5}
 #infoPane{
-	@extend .col-xs-4;
-	@extend .well;	
+	@extend .col-xs-12;
+	@extend .well;
+	@include transition-property(height);
+	@include transition-duration(800ms);
+	padding:10px 15px;
+	overflow:hidden;		
+	
+	div.name,div.position,div.team{text-align: center;}
+	div.name{
+		@extend .col-xs-12;
+		h2{
+			margin-top:10px;
+			margin-bottom:5px;
+		}
+	}
+	div.position,div.team,div.byeWeek{
+		padding:0 10px;
+		
+		p{
+			font-size:1.3em;
+			text-align: center;
+		}
+	}	
+	div.position,div.team{
+		@extend .col-xs-6;
+		@extend .col-sm-3;		
+	}
+
+	div.byeWeek{
+		padding:0px;
+		@extend .col-xs-12;
+		@extend .col-sm-6;
+
+		span{
+			@extend .visible-lg-inline;
+		}
+	}
+
+	div.depthChart{
+		@extend .col-xs-12;
+		@extend .col-md-7;
+
+		>div{
+			@extend .panel;
+			@extend .panel-default;
+		}
+		table{
+			@extend .table; 
+			@extend .table-condensed;
+			@extend .table-hover;
+		}
+		td,th{text-align:center;}
+		th{font-weight:bold;}
+		th.Not.Available{
+			border-bottom:none;
+			font-weight:normal;
+		}
+		td{cursor:pointer;}
+	}
+	div.logo{
+		@extend .hidden-xs;
+		@extend .hidden-sm;
+		@extend .col-md-5;
+		float:right;
+		padding-bottom:8px;
+		img{
+			@extend .center-block;
+			width:100%;
+			max-width: 200px;
+		}
+	}
+	div.superfluousLogo{
+		@extend .visible-xs-block;
+		@extend .visible-sm-block;
+		@extend .col-xs-12;
+		padding-top:15px;
+
+		img{
+			@extend .center-block;
+			width:100%;
+			max-width: 200px;
+		}
+	}
+}
+#infoPane.closed{
+	@include transition-property(height);
+	@include transition-duration(800ms);
+	height:0px;
+	padding:0px;
+	min-height:0px;
+	border:none;
 }

@@ -43,8 +43,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="" id="viewControls">
           <ul class="">
-            <li class="active"><a href="#">All Players</a></li>
-            <li><a href="#">2nd Link</a></li>
+            <li class="active"><a href="#">Available Players</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Position Filter <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -56,29 +55,73 @@
                 <li><a href="" ng-click="setPositionFilterValue($event)">FLEX</a></li>
               </ul>
             </li>
-          </ul>
+          
+          <li>
           <form role="search">
             <div>
               <input type="text" placeholder="Find Player" ng-model="nameSearch">
             </div>
           </form>
+          </li>
+          <li><a href="#" id="showCurrentRoster">Current Roster</a></li></ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav> 
 
     <div id="playerList">
-      <!-- 
-      | filter:playerPositionFilter(positionFilterValue) | filter:playerNameFilter(nameSearch)
-      -->
       <div class='player' ng-repeat="player in testPlayers | filter:playerPositionFilter(positionFilterValue) | filter:{displayName:nameSearch}" ng-click="selectPlayer($event)" data-playerId="{{player.playerId}}">
         <div>
-          <div class="name"><!-- {{player.fname}} {{player.lname}} -->{{player.displayName}}</div>
+          <div class="name">{{player.displayName}}</div>
           <div class="position">{{player.position}}</div>
           <div class="team">{{player.team}}</div>
         </div>
       </div>      
     </div>
+    
+    <div id="sideBar">
+      <div id="infoPane" ng-class="{closed:styleController.infoPane_closed}" style="height:{{styleController.infoPane_height}}px">
+        
+        <div class="col-xs-12 col-md-7">
+          <div class="name">
+            <h2>{{activePlayer.displayName}}</h2>
+          </div>          
+          <div class="position">
+            <p>{{activePlayer.position}}</p>
+          </div>
+          <div class="team">
+            <p>{{activePlayer.team}}</p>
+          </div>
+          <div class="byeWeek">
+              <p>Bye<span> Week</span>: {{activePlayer.byeWeek}}</p>
+          </div>
+        </div>
 
-    <div id="infoPane"> this is text</div>
+        <div class="logo">
+          <img src='images/{{activePlayer.team}}.png' alt='{{activePlayer.team}}' />
+        </div>
+
+        <div class="depthChart">
+          <div>
+          <table>
+            <thead>
+              <tr style="text-align:center">
+                <th class="{{activePlayer.depthChartPosition}}">
+                  Depth Chart - {{activePlayer.depthChartPosition}}
+                </th>
+              </tr>
+            </thead>
+            <tr ng-repeat="player in activePlayer.depthChartList" data-index="{{$index}}" ng-class="{active:player.selectedPlayer}">
+              <td>{{player.playerName}}</td>
+            </tr>
+          </table>
+          </div>
+        </div>
+
+        <div class="superfluousLogo">
+          <img src='images/{{activePlayer.team}}.png' alt='{{activePlayer.team}}' />
+        </div>        
+
+      </div> <!--end infoPane -->
+    </div> <!--end sideBar -->
   </body>
 </html>
