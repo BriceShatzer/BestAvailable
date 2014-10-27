@@ -36,7 +36,10 @@ module.exports = function(grunt) {
 
     copy: {
       markup:{
-        files: [ {expand: true, src: 'src/*.html', dest: 'build/', flatten: true} ]
+        expand: true, 
+        src: 'src/*.html', 
+        dest: 'build/', 
+        flatten: true
       },
       assetScripts:{
         files: [
@@ -45,6 +48,12 @@ module.exports = function(grunt) {
           {src: 'bower_components/jquery/dist/jquery.min.js', dest: 'build/jquery.min.js'},
           {src: 'bower_components/lodash/dist/lodash.min.js', dest: 'build/lodash.min.js'},
         ]
+      },
+      images:{
+        expand: true,
+        src: 'src/images/*', 
+        dest: 'build/images/',
+        flatten: true
       },
       applicationLogic:{
         files: [
