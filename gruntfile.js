@@ -41,6 +41,13 @@ module.exports = function(grunt) {
         dest: 'build/', 
         flatten: true
       },
+      dataSources:{
+        expand: true, 
+        src: 'src/*.json', 
+        dest: 'build/', 
+        flatten: true
+      },
+
       assetScripts:{
         files: [
           {src: 'bower_components/angular/angular.min.js', dest: 'build/angular.min.js'},

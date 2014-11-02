@@ -9,7 +9,19 @@ See http://www.fantasyfootballnerd.com/fantasy-football-api for more info.
 
 var bestAvailableApp = angular.module('bestAvailableApp', []);
 
-bestAvailableApp.controller('playerListController', function($scope){
+bestAvailableApp.controller('playerListController', function($scope, $http){
+
+	$http.get('depthCharts.json')
+		.success(function(data){
+			$scope.depthChartsJSON = data.DepthCharts;
+			console.dir($scope.depthChartsJSON);
+		})
+		.error(function() {
+			console.log('*** Depth Chart Data Unavailable ***');
+		
+		});
+
+
 
 //===Position Filter Functionality 
 	$scope.positionFilterValue = '';
