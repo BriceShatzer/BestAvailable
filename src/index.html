@@ -69,7 +69,7 @@
     </nav> 
 
     <div id="playerList">
-      <div class='player' ng-repeat="player in testPlayers | filter:playerPositionFilter(positionFilterValue) | filter:{displayName:nameSearch}" ng-click="selectPlayer($event)" data-playerId="{{player.playerId}}">
+      <div class='player' ng-repeat="player in testPlayers | filter:playerPositionFilter(positionFilterValue) | filter:{displayName:nameSearch} track by player.playerId " ng-click="selectPlayer($event,player)">
         <div>
           <div class="name">{{player.displayName}}</div>
           <div class="position">{{player.position}}</div>

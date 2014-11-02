@@ -17,8 +17,7 @@ bestAvailableApp.controller('playerListController', function($scope, $http){
 			console.dir($scope.depthChartsJSON);
 		})
 		.error(function() {
-			console.log('*** Depth Chart Data Unavailable ***');
-		
+			console.log('*** Depth Chart Data Unavailable ***');		
 		});
 
 
@@ -28,6 +27,7 @@ bestAvailableApp.controller('playerListController', function($scope, $http){
 
 	$scope.setPositionFilterValue = function(event){
 		$scope.positionFilterValue = event.currentTarget.text;
+
 	};
 
 	$scope.playerPositionFilter = function(value) {
@@ -62,15 +62,12 @@ bestAvailableApp.controller('playerListController', function($scope, $http){
 
 
 	$scope.activePlayer = {};
-
-	$scope.selectPlayer = function(event){
-		var $playerDiv = $(event.currentTarget);
-	//---player list manipulation
+	$scope.selectPlayer= function(event,player){
+	//---player list manipulation 
 		$('div.player.selected').removeClass('selected');
-		$playerDiv.addClass('selected');
+		event.currentTarget.className+=' selected';
 
-	//--side panel functionality	 	
-		var player = _.find($scope.testPlayers, { 'playerId': $playerDiv.attr('data-playerId') });
+	//---side panel functionality 
 		_.forIn($scope.depthCharts[player.team], function(v){
 			var c = _.find(v,{ playerId: player.playerId });
 			if(c){ 
